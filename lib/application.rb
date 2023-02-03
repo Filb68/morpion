@@ -17,8 +17,9 @@ class Game
     @@winner = '  '
   
     def initialize				
-    @player_one_name = Player.new
-      puts 'Player 2 - enter your name!'
+    puts 'joueur 1 - Entre ton nom !'
+     @player_one_name = gets.chomp 
+      puts 'joueur 2 - Entre ton nom !'
       @player_two_name = gets.chomp
      @board = Array.new(3) { Array.new(3, '_') } 
     end
@@ -41,7 +42,7 @@ class Game
     end
   
     def player_choice(player, symbol)
-      puts "#{player} please enter your coordinates separated by a space"
+      puts "#{player} Respecte les consignes, please : entre les coordoonnées séparées par un espace"
       input = gets.chomp
       input_array = input.split
       coord_one = input_array[0].to_i
@@ -49,7 +50,7 @@ class Game
   
               # loop until the user input is valid - has space, between 0 and two, board slot is free
       until input.match(/\s/) && coord_one.between?(0, 2) && coord_two.between?(0, 2) && @board[coord_one][coord_two] == '_'
-        puts "Please enter valid coordinates for an empty space in the grid"
+        puts "Please, choisis des coordoonnées valides suur une case disponible"
         input = gets.chomp
         input_array = input.split
         coord_one = input_array[0].to_i
@@ -114,9 +115,9 @@ class Game
     def declare_result(symbol)
       case symbol
       when 'O'
-        puts "#{@player_one_name} wins the game!"
+        puts "#{@player_one_name} gagne!"
       when 'X'
-        puts "#{@player_two_name} wins the game!"
+        puts "#{@player_two_name} gagne!"
       else
         puts "It's a tie!"
       end
@@ -124,7 +125,7 @@ class Game
   
     def play_game				
       puts "\r\n"
-      puts 'Here is your empty battlefield!'
+      puts 'Voilà la chose!'
       display_board(@board)
   
       until @@turn_count >= 10 do
@@ -143,8 +144,8 @@ class Game
   
   # instructions			(Affichage initial à l'écran)
   
-  puts 'Welcome to tic-tac-toe. The rules are as expected, but choosing placement requires coordinates.'
-  puts 'Each turn, enter two numbers with a space, per the grid layout below:'
+  puts 'Bienvenue au jeu du Morpion.'
+  puts 'Quand vient ton tour, entre 2 chiffres séparés par un espace pour placter ton pion.'
   puts "\r\n"
   puts '0 0 | 0 1 | 0 2'
   puts '1 0 | 1 1 | 1 2'
