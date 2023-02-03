@@ -1,5 +1,5 @@
 
-require 'bundler'
+  require 'bundler'
 require 'pry'
 
 
@@ -17,9 +17,9 @@ class Game
     @@winner = '  '
   
     def initialize				
-    puts 'joueur 1 - Entre ton nom !'
-     @player_one_name = gets.chomp 
-      puts 'joueur 2 - Entre ton nom !'
+      puts 'joueur 1- entre ton nom de guerre!'
+      @player_one_name = gets.chomp
+      puts 'joueur 2 - choisis ton nom, aussi!'
       @player_two_name = gets.chomp
      @board = Array.new(3) { Array.new(3, '_') } 
     end
@@ -42,7 +42,7 @@ class Game
     end
   
     def player_choice(player, symbol)
-      puts "#{player} Respecte les consignes, please : entre les coordoonnées séparées par un espace"
+      puts "#{player} please, entre des coordonnées entre 0 et 2 ... séparées par un espace!"
       input = gets.chomp
       input_array = input.split
       coord_one = input_array[0].to_i
@@ -50,7 +50,7 @@ class Game
   
               # loop until the user input is valid - has space, between 0 and two, board slot is free
       until input.match(/\s/) && coord_one.between?(0, 2) && coord_two.between?(0, 2) && @board[coord_one][coord_two] == '_'
-        puts "Please, choisis des coordoonnées valides suur une case disponible"
+        puts "Please, choisi des coordonnées valide pour placer ton pion sur une case libre (entre 0 et 2, on a dit)"
         input = gets.chomp
         input_array = input.split
         coord_one = input_array[0].to_i
@@ -117,7 +117,7 @@ class Game
       when 'O'
         puts "#{@player_one_name} gagne!"
       when 'X'
-        puts "#{@player_two_name} gagne!"
+        puts "#{@player_two_name} arrache la victoire!"
       else
         puts "It's a tie!"
       end
@@ -125,7 +125,7 @@ class Game
   
     def play_game				
       puts "\r\n"
-      puts 'Voilà la chose!'
+      puts 'Voilà la chose'
       display_board(@board)
   
       until @@turn_count >= 10 do
@@ -145,9 +145,10 @@ class Game
   # instructions			(Affichage initial à l'écran)
   
   puts 'Bienvenue au jeu du Morpion.'
-  puts 'Quand vient ton tour, entre 2 chiffres séparés par un espace pour placter ton pion.'
+  puts "Quand vient ton tour, entre des coordonnées enter 0 et 2 séparées d'un espace"
   puts "\r\n"
   puts '0 0 | 0 1 | 0 2'
   puts '1 0 | 1 1 | 1 2'
   puts '2 0 | 2 1 | 2 2'
   puts "\r\n"
+  
